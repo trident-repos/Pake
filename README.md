@@ -1,11 +1,13 @@
-<p align="left"><strong>中文</strong> | <a href="https://github.com/tw93/Pake/blob/master/README_EN.md">English</a></p>
+<h4 align="right"><strong>English</strong> | <a href="https://github.com/tw93/Pake/blob/master/README_CN.md">简体中文</a></h4>
 <p align="center">
     <img src=https://gw.alipayobjects.com/zos/k/fa/logo-modified.png width=138/>
+</p>
 <h1 align="center">Pake</h1>
+<p align="center"><strong>Turn any webpage into a desktop app with Rust <em>with ease</em>.</strong></p>
 <div align="center">
     <a href="https://twitter.com/HiTw93" target="_blank">
-    <img alt="twitter" src="https://img.shields.io/twitter/follow/Hitw93?color=%231D9BF0&label=Pake%20%F0%9F%93%A2%20&logo=Twitter&style=flat-square"></a>
-    <a href="https://t.me/miaoyan" target="_blank">
+    <img alt="twitter" src="https://img.shields.io/badge/follow-Tw93-red?style=flat-square&logo=Twitter"></a>
+    <a href="https://t.me/+GclQS9ZnxyI2ODQ1" target="_blank">
     <img alt="telegram" src="https://img.shields.io/badge/chat-telegram-blueviolet?style=flat-square&logo=Telegram"></a>
     <a href="https://github.com/tw93/Pake/releases" target="_blank">
     <img alt="GitHub downloads" src="https://img.shields.io/github/downloads/tw93/Pake/total.svg?style=flat-square"></a>
@@ -14,126 +16,191 @@
     <a href="https://github.com/tw93/Pake/issues?q=is%3Aissue+is%3Aclosed" target="_blank">
     <img alt="GitHub closed issues" src="https://img.shields.io/github/issues-closed/tw93/Pake.svg?style=flat-square"></a>
 </div>
-<div align="left">很简单用 Rust 打包网页生成很小的桌面 App，支持 Mac/Windows/Linux 应用，当前已打包微信读书、Twitter、Youtube、Flomo、Reference、RunCode、Google Translate、语雀、Witeboard、Vercel、V2EX、开发工具箱等，欢迎去 <a href=https://github.com/tw93/Pake/discussions>讨论区</a> 交流分享。</div>
-</p>
 
-## 特征
+<div align="left">Pake supports Mac, Windows, and Linux. Check out README for <a href="#popular-packages">Popular Packages</a>, <a href="#command-line-packaging">Command-Line Packaging</a>, and <a href="#development">Customized Development</a> information. Feel free to share your suggestions in <a href=https://github.com/tw93/Pake/discussions>Discussions</a>.</div>
 
-🏂 **小**：相比传统的 Electron 套壳打包，要小将近 40 倍，不到 3M  
-😂 **快**：Pake 的底层使用的 Rust Tauri 框架，性能体验较 JS 框架要轻快不少，内存小很多  
-🩴 **特**：不是单纯打包，实现了快捷键的透传、沉浸式的窗口、拖动、样式改写、去广告、产品的极简风格定制  
-🐶 **玩**：只是一个很简单的小玩具，用 Rust 替代之前套壳网页打包的老思路，其实 PWA 也很好
+## Features
 
-## 下载
+- 🎐 Nearly 20 times smaller than an Electron package (around 5M!)
+- 🚀 With Rust Tauri, Pake is much more lightweight and faster than JS-based frameworks.
+- 📦 Battery-included package — shortcut pass-through, immersive windows, and minimalist customization.
+- 👻 Pake is just a simple tool — replace the old bundle approach with Rust (though PWA is good enough).
+
+## Popular Packages
 
 <table>
     <tr>
-        <td>WeRead <a href="https://github.com/tw93/Pake/releases/latest/download/WeRead.dmg">Download</a></td>
-        <td>Twitter <a href="https://github.com/tw93/Pake/releases/latest/download/Twitter.dmg">Download</a></td>
+        <td>WeRead
+            <a href="https://github.com/tw93/Pake/releases/latest/download/WeRead.dmg">Mac</a>
+            <a href="https://github.com/tw93/Pake/releases/latest/download/WeRead_x64.msi">Windows</a>
+            <a href="https://github.com/tw93/Pake/releases/latest/download/WeRead_x86_64.deb">Linux</a>
+        </td>
+        <td>Twitter
+            <a href="https://github.com/tw93/Pake/releases/latest/download/Twitter.dmg">Mac</a>
+            <a href="https://github.com/tw93/Pake/releases/latest/download/Twitter_x64.msi">Windows</a>
+            <a href="https://github.com/tw93/Pake/releases/latest/download/Twitter_x86_64.deb">Linux</a>
+        </td>
     </tr>
     <tr>
         <td><img src=https://cdn.fliggy.com/upic/17dC9I.jpg width=600/></td>
         <td><img src=https://cdn.fliggy.com/upic/mc41xq.jpg width=600/></td>
     </tr>
     <tr>
-        <td>YouTube <a href="https://github.com/tw93/Pake/releases/latest/download/YouTube.dmg">Download</a></td>
-        <td>Reference <a href="https://github.com/tw93/Pake/releases/latest/download/Reference.dmg">Download</a></td>
+        <td>ChatGPT
+            <a href="https://github.com/tw93/Pake/releases/latest/download/ChatGPT.dmg">Mac</a>
+            <a href="https://github.com/tw93/Pake/releases/latest/download/ChatGPT_x64.msi">Windows</a>
+            <a href="https://github.com/tw93/Pake/releases/latest/download/ChatGPT_x86_64.deb">Linux</a>
+        </td>
+        <td>Poe
+            <a href="https://github.com/tw93/Pake/releases/latest/download/Poe.dmg">Mac</a>
+            <a href="https://github.com/tw93/Pake/releases/latest/download/Poe_x64.msi">Windows</a>
+            <a href="https://github.com/tw93/Pake/releases/latest/download/Poe_x86_64.deb">Linux</a>
+        </td>
     </tr>
     <tr>
-        <td><img src=https://cdn.fliggy.com/upic/Ea5ZRw.png width=600/></td>
-        <td><img src=https://cdn.fliggy.com/upic/KFsZIY.png width=600/></td>
+        <td><img src=https://cdn.fliggy.com/upic/Ld5ZCJ.png width=600/></td>
+        <td><img src=https://gw.alipayobjects.com/zos/k/95/bcGBut.png width=600/></td>
     </tr>
     <tr>
-        <td>RunCode <a href="https://github.com/tw93/Pake/releases/latest/download/RunCode.dmg">Download</a></td>
-        <td>Google Translate <a href="https://github.com/tw93/Pake/releases/latest/download/GoogleTranslate.dmg">Download</a></td>
+      <td>YouTube Music
+            <a href="https://github.com/tw93/Pake/releases/latest/download/YouTubeMusic.dmg">Mac</a>
+            <a href="https://github.com/tw93/Pake/releases/latest/download/YouTubeMusic_x64.msi">Windows</a>
+            <a href="https://github.com/tw93/Pake/releases/latest/download/YouTubeMusic_x86_64.deb">Linux</a>
+      </td>
+      <td>YouTube
+            <a href="https://github.com/tw93/Pake/releases/latest/download/YouTube.dmg">Mac</a>
+            <a href="https://github.com/tw93/Pake/releases/latest/download/YouTube_x64.msi">Windows</a>
+            <a href="https://github.com/tw93/Pake/releases/latest/download/YouTube_x86_64.deb">Linux</a>
+      </td>
     </tr>
     <tr>
-        <td><img src=https://cdn.fliggy.com/upic/EB1OYP.jpg width=600/></td>
-        <td><img src=https://cdn.fliggy.com/upic/EmjUGy.png width=600/></td>
+        <td><img src=https://cdn.fliggy.com/upic/iz3mtQ.png width=600/></td>
+        <td><img src=https://gw.alipayobjects.com/zos/k/pn/1.jpg width=600/></td>
     </tr>
     <tr>
-        <td>Flomo <a href="https://github.com/tw93/Pake/releases/latest/download/Flomo.dmg">Download</a></td>
-        <td>YuQue <a href="https://github.com/tw93/Pake/releases/latest/download/YuQue.dmg">Download</a></td>
+        <td>LiZhi
+            <a href="https://github.com/tw93/Pake/releases/latest/download/LiZhi.dmg">Mac</a>
+            <a href="https://github.com/tw93/Pake/releases/latest/download/LiZhi_x64.msi">Windows</a>
+            <a href="https://github.com/tw93/Pake/releases/latest/download/LiZhi_x86_64.deb">Linux</a>
+        </td>
+        <td>ProgramMusic
+            <a href="https://github.com/tw93/Pake/releases/latest/download/ProgramMusic.dmg">Mac</a>
+            <a href="https://github.com/tw93/Pake/releases/latest/download/ProgramMusic_x64.msi">Windows</a>
+            <a href="https://github.com/tw93/Pake/releases/latest/download/ProgramMusic_x86_64.deb">Linux</a>
+        </td>
     </tr>
     <tr>
-        <td><img src=https://cdn.fliggy.com/upic/jg9Eeu.jpg width=600/></td>
-        <td><img src=https://cdn.fliggy.com/upic/02SZQl.png width=600/></td>
+        <td><img src=https://cdn.fliggy.com/upic/nYEKqN.jpg width=600/></td>
+        <td><img src=https://gw.alipayobjects.com/zos/k/r7/0C9lju.jpg width=600/></td>
+    </tr>
+    <tr>
+        <td>Qwerty
+            <a href="https://github.com/tw93/Pake/releases/latest/download/Qwerty.dmg">Mac</a>
+            <a href="https://github.com/tw93/Pake/releases/latest/download/Qwerty_x64.msi">Windows</a>
+            <a href="https://github.com/tw93/Pake/releases/latest/download/Qwerty_x86_64.deb">Linux</a>
+        </td>
+        <td>CodeRunner
+            <a href="https://github.com/tw93/Pake/releases/latest/download/CodeRunner.dmg">Mac</a>
+            <a href="https://github.com/tw93/Pake/releases/latest/download/CodeRunner_x64.msi">Windows</a>
+            <a href="https://github.com/tw93/Pake/releases/latest/download/CodeRunner_x86_64.deb">Linux</a>
+        </td>
+    </tr>
+    <tr>
+        <td><img src=https://cdn.fliggy.com/upic/i2eg6G.png width=600/></td>
+        <td><img src=https://cdn.fliggy.com/upic/mUzOek.jpg width=600/></td>
+    </tr>
+        <tr>
+        <td>Flomo
+            <a href="https://github.com/tw93/Pake/releases/latest/download/Flomo.dmg">Mac</a>
+            <a href="https://github.com/tw93/Pake/releases/latest/download/Flomo_x64.msi">Windows</a>
+            <a href="https://github.com/tw93/Pake/releases/latest/download/Flomo_x86_64.deb">Linux</a>
+        </td>
+        <td>XiaoHongShu
+            <a href="https://github.com/tw93/Pake/releases/latest/download/XiaoHongShu.dmg">Mac</a>
+            <a href="https://github.com/tw93/Pake/releases/latest/download/XiaoHongShu_x64.msi">Windows</a>
+            <a href="https://github.com/tw93/Pake/releases/latest/download/XiaoHongShu_x86_64.deb">Linux</a>
+        </td>
+    </tr>
+    <tr>
+        <td><img src=https://gw.alipayobjects.com/zos/k/30/RoUSUf.png width=600/></td>
+        <td><img src=https://gw.alipayobjects.com/zos/k/89/yJVwyi.png width=600/></td>
     </tr>
 </table>
 
-更多常用 App 下载可以去 [Releases](https://github.com/tw93/Pake/releases) 中看看。
+<details>
+<summary>🏂 You can download more applications from <a href="https://github.com/tw93/Pake/releases">Releases</a>. <b>Click here to expand the shortcuts reference!</b></summary>
 
-## 快捷键
+<br/>
 
-| Mac                         | Windows/Linux                  | 功能               |
-| --------------------------- | ------------------------------ | ------------------ |
-| <kbd>⌘</kbd> + <kbd>[</kbd> | <kbd>Ctrl</kbd> + <kbd>←</kbd> | 返回上一个页面     |
-| <kbd>⌘</kbd> + <kbd>]</kbd> | <kbd>Ctrl</kbd> + <kbd>→</kbd> | 去下一个页面       |
-| <kbd>⌘</kbd> + <kbd>↑</kbd> | <kbd>Ctrl</kbd> + <kbd>↑</kbd> | 自动滚动到页面顶部 |
-| <kbd>⌘</kbd> + <kbd>↓</kbd> | <kbd>Ctrl</kbd> + <kbd>↓</kbd> | 自动滚动到页面底部 |
-| <kbd>⌘</kbd> + <kbd>r</kbd> | <kbd>Ctrl</kbd> + <kbd>r</kbd> | 刷新页面           |
-| <kbd>⌘</kbd> + <kbd>w</kbd> | <kbd>Ctrl</kbd> + <kbd>w</kbd> | 隐藏窗口，非退出   |
-| <kbd>⌘</kbd> + <kbd>-</kbd> | <kbd>Ctrl</kbd> + <kbd>-</kbd> | 缩小页面           |
-| <kbd>⌘</kbd> + <kbd>w</kbd> | <kbd>Ctrl</kbd> + <kbd>+</kbd> | 放大页面           |
-| <kbd>⌘</kbd> + <kbd>=</kbd> | <kbd>Ctrl</kbd> + <kbd>=</kbd> | 放大页面           |
-| <kbd>⌘</kbd> + <kbd>0</kbd> | <kbd>Ctrl</kbd> + <kbd>0</kbd> | 重置页面缩放       |
+| Mac                         | Windows/Linux                  | Function                      |
+|-----------------------------|--------------------------------|-------------------------------|
+| <kbd>⌘</kbd> + <kbd>[</kbd> | <kbd>Ctrl</kbd> + <kbd>←</kbd> | Return to the previous page   |
+| <kbd>⌘</kbd> + <kbd>]</kbd> | <kbd>Ctrl</kbd> + <kbd>→</kbd> | Go to the next page           |
+| <kbd>⌘</kbd> + <kbd>↑</kbd> | <kbd>Ctrl</kbd> + <kbd>↑</kbd> | Auto scroll to top of page    |
+| <kbd>⌘</kbd> + <kbd>↓</kbd> | <kbd>Ctrl</kbd> + <kbd>↓</kbd> | Auto scroll to bottom of page |
+| <kbd>⌘</kbd> + <kbd>r</kbd> | <kbd>Ctrl</kbd> + <kbd>r</kbd> | Refresh Page                  |
+| <kbd>⌘</kbd> + <kbd>w</kbd> | <kbd>Ctrl</kbd> + <kbd>w</kbd> | Hide window, not quite        |
+| <kbd>⌘</kbd> + <kbd>-</kbd> | <kbd>Ctrl</kbd> + <kbd>-</kbd> | Zoom out the page             |
+| <kbd>⌘</kbd> + <kbd>+</kbd> | <kbd>Ctrl</kbd> + <kbd>+</kbd> | Zoom in the page              |
+| <kbd>⌘</kbd> + <kbd>=</kbd> | <kbd>Ctrl</kbd> + <kbd>=</kbd> | Zoom in the Page              |
+| <kbd>⌘</kbd> + <kbd>0</kbd> | <kbd>Ctrl</kbd> + <kbd>0</kbd> | Reset the page zoom           |
 
-此外还支持双击头部进行全屏切换，拖拽头部进行移动窗口，还有其他需求，欢迎提过来。
+In addition, double-click the title bar to switch to full-screen mode. For Mac users, you can also use the gesture to go to the previous or next page and drag the title bar to move the window.
 
-## 注意点
+</details>
 
-- Windows 下不能安装到 C:\Program File，会直接闪退。建议安装到其他目录，比如 D:\Program Files。
-- Linux 下暂时不能存 cookie，即应用关闭后数据清空，账号自动推出。
+## Before starting
 
-## 开发
+1. **For beginners**: Play with Popular Packages to find out Pake's capabilities, or try to pack your application with [GitHub Actions](https://github.com/tw93/Pake/wiki/Online-Compilation-(used-by-ordinary-users)). Don't hesitate to reach for assistance at [Discussion](https://github.com/tw93/Pake/discussions)!
+2. **For developers**: “Command-Line Packaging” supports macOS fully. For Windows/Linux users, it requires some tinkering. [Configure your environment](https://tauri.app/v1/guides/getting-started/prerequisites) before getting started.
+3. **For hackers**: For people who are good at both front-end development and Rust, how about customizing your apps' function more with the following [Customized Development](#development)?
 
-开始前参考 [Tauri](https://tauri.app/v1/guides/getting-started/prerequisites#setting-up-macos) 快速配置好环境。
+## Command-Line Packaging
 
-```sh
-// 安装依赖
-npm i
+![Pake](https://gw.alipayobjects.com/zos/k/zd/pake.gif)
 
-// 调试
-npm run dev
+**Pake provides a command line tool, making the flow of package customization quicker and easier. See [documentation](./bin/README.md) for more information.**
 
-// 打包 Mac 应用
-npm run build
+```bash
+# Install with npm
+npm install -g pake-cli
 
-// 打包 Windows 应用
-npm run build:windows
+# Command usage
+pake url [OPTIONS]...
 
-// 打包 Linux 应用
-npm run build:linux
-
-// 一键打包所有 Mac/Linux 应用
-chmod +x ./script/build.sh && ./script/build.sh
-
-// 一键打包所有 Windows 项目
-.\script\build.bat
+# Feel free to play with Pake! It might take a while to prepare the environment the first time you launch Pake.
+pake https://weekly.tw93.fun --name Weekly --transparent
 ```
 
-## 打新包
+If you are new to the command line, you can compile packages online with _GitHub Actions_. See the [Tutorial](https://github.com/tw93/Pake/wiki/Online-Compilation-(used-by-ordinary-users)) for more information.
 
-1. 修改 `src-tauri` 目录下的 `tauri.conf.json` 中的 `url、productName、icon、identifier` 这 4 个字段，其中 icon 可以从 icons 目录选择一个，也可以去 [macOSicons](https://macosicons.com/#/) 下载符合产品名称的
-2. 关于窗口属性设置，可以在 `tauri.conf.json` 修改 `windows` 属性对应的 `width/height`，是否全屏 `fullscreen`，是否可以调整大小 `resizable`，假如想适配 Mac 沉浸式头部，可以将 `transparent` 设置成 `true`，找到 Header 元素加一个 `padding-top` 样式即可，不想适配改成 `false` 也行
-3. `npm run dev` 本地调试看看效果，此外可以使用 `npm run dev:debug` 进行容器调试
-4. `npm run build` 运行即可打生产包
+## Development
 
-## 高级
+Prepare your environment before starting. Make sure you have Rust `>=1.63` and Node `>=16` (e.g., `16.18.1`) installed on your computer. For installation guidance, see [Tauri documentation](https://tauri.app/v1/guides/getting-started/prerequisites).
 
-#### 1. 如何改写样式，如去掉原站广告、不想要的模块、甚至重新设计？
+If you are unfamiliar with these, it is better to try out the above tool to pack with one click.
 
-首先需要使用 `npm run dev:debug` 打开 devtools 调试模式，找到你需要修改的样式名称，先在 devtools 里面验证效果；找到 `pake.js` 中样式位置 `style.innerHTML` ，将需要覆盖的样式加上即可，有一些案例你可以模仿。
+```sh
+# Install Dependencies
+npm i
 
-#### 2. 如何注入 JS 的逻辑，比如实现事件监听，比如说键盘快捷键？
+# Local development [Right-click to open debug mode.]
+npm run dev
 
-参考 `pake.js` 中事件监听 `document.addEventListener`，直接编写即可，这里更多是基础前端的技术。
+# Pack application
+npm run build
+```
 
-#### 3. 如何进行容器内的事件和 Pake 通信，比如说 Web 的拖拽、滚动、特殊点击传递啥的？
+## Advanced Usage
 
-参考 `pake.js` 中通信代码 `postMessage`，写好事件监听，然后用 `window.ipc.postMessage` 将事件以及参数传递出来，然后参考容器接收事件 `window.drag_window`，自己处理即可，更多可以参考 tauri 以及 wry 的官方文档。
+1. You can refer to the [codebase structure](https://github.com/tw93/Pake/wiki/Description-of-Pake's-code-structure) before working on Pake, which will help you much in development.
+2. Modify the `url` and `productName` fields in the `pake.json` file under the src-tauri directory, the "domain" field in the `tauri.config.json` file needs to be modified synchronously, as well as the `icon` and `identifier` fields in the `tauri.xxx.conf.json` file. You can select a `icon` from the `icons` directory or download one from [macOSicons](https://macosicons.com/#/) to match your product needs.
+3. For configurations on window properties, you can modify the `pake.json` file to change the value of `width`, `height`, `fullscreen` (or not), `resizable` (or not) of the `windows` property. To adapt to the immersive header on Mac, change `transparent` to `true`, look for the `Header` element, and add the `padding-top` property.
+4. For advanced usages such as style rewriting, advertisement removal, JS injection, container message communication, and user-defined shortcut keys, see [Advanced Usage of Pake](https://github.com/tw93/Pake/wiki/Advanced-Usage-of-Pake).
 
-## 贡献者
+## Developers
+
+Pake's development can not be without these Hackers. They contributed a lot of capabilities for Pake. Also, welcome to follow them! ❤️
 
 <!-- readme: contributors -start -->
 <table>
@@ -160,6 +227,20 @@ chmod +x ./script/build.sh && ./script/build.sh
         </a>
     </td>
     <td align="center">
+        <a href="https://github.com/jeasonnow">
+            <img src="https://avatars.githubusercontent.com/u/16950207?v=4" width="90;" alt="jeasonnow"/>
+            <br />
+            <sub><b>Santree</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/wanghanzhen">
+            <img src="https://avatars.githubusercontent.com/u/25301012?v=4" width="90;" alt="wanghanzhen"/>
+            <br />
+            <sub><b>Volare</b></sub>
+        </a>
+    </td>
+    <td align="center">
         <a href="https://github.com/liby">
             <img src="https://avatars.githubusercontent.com/u/38807139?v=4" width="90;" alt="liby"/>
             <br />
@@ -167,24 +248,10 @@ chmod +x ./script/build.sh && ./script/build.sh
         </a>
     </td>
     <td align="center">
-        <a href="https://github.com/m1911star">
-            <img src="https://avatars.githubusercontent.com/u/4948120?v=4" width="90;" alt="m1911star"/>
+        <a href="https://github.com/essesoul">
+            <img src="https://avatars.githubusercontent.com/u/58624474?v=4" width="90;" alt="essesoul"/>
             <br />
-            <sub><b>Horus</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/QingZ11">
-            <img src="https://avatars.githubusercontent.com/u/38887077?v=4" width="90;" alt="QingZ11"/>
-            <br />
-            <sub><b>Steam</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/2nthony">
-            <img src="https://avatars.githubusercontent.com/u/19513289?v=4" width="90;" alt="2nthony"/>
-            <br />
-            <sub><b>2nthony</b></sub>
+            <sub><b>Essesoul</b></sub>
         </a>
     </td></tr>
 <tr>
@@ -196,6 +263,84 @@ chmod +x ./script/build.sh && ./script/build.sh
         </a>
     </td>
     <td align="center">
+        <a href="https://github.com/m1911star">
+            <img src="https://avatars.githubusercontent.com/u/4948120?v=4" width="90;" alt="m1911star"/>
+            <br />
+            <sub><b>Horus</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/Pake-Actions">
+            <img src="https://avatars.githubusercontent.com/u/126550811?v=4" width="90;" alt="Pake-Actions"/>
+            <br />
+            <sub><b>Pake Actions</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/QingZ11">
+            <img src="https://avatars.githubusercontent.com/u/38887077?v=4" width="90;" alt="QingZ11"/>
+            <br />
+            <sub><b>Steam</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/exposir">
+            <img src="https://avatars.githubusercontent.com/u/33340988?v=4" width="90;" alt="exposir"/>
+            <br />
+            <sub><b>孟世博</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/2nthony">
+            <img src="https://avatars.githubusercontent.com/u/19513289?v=4" width="90;" alt="2nthony"/>
+            <br />
+            <sub><b>2nthony</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/ACGNnsj">
+            <img src="https://avatars.githubusercontent.com/u/22112141?v=4" width="90;" alt="ACGNnsj"/>
+            <br />
+            <sub><b>Null</b></sub>
+        </a>
+    </td></tr>
+<tr>
+    <td align="center">
+        <a href="https://github.com/nekomeowww">
+            <img src="https://avatars.githubusercontent.com/u/11081491?v=4" width="90;" alt="nekomeowww"/>
+            <br />
+            <sub><b>Ayaka Neko</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/turkyden">
+            <img src="https://avatars.githubusercontent.com/u/24560160?v=4" width="90;" alt="turkyden"/>
+            <br />
+            <sub><b>Dengju Deng</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/Fechin">
+            <img src="https://avatars.githubusercontent.com/u/2541482?v=4" width="90;" alt="Fechin"/>
+            <br />
+            <sub><b>Fechin</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/Milo123459">
+            <img src="https://avatars.githubusercontent.com/u/50248166?v=4" width="90;" alt="Milo123459"/>
+            <br />
+            <sub><b>Milo</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/princemaple">
+            <img src="https://avatars.githubusercontent.com/u/1329716?v=4" width="90;" alt="princemaple"/>
+            <br />
+            <sub><b>Po Chen</b></sub>
+        </a>
+    </td>
+    <td align="center">
         <a href="https://github.com/houhoz">
             <img src="https://avatars.githubusercontent.com/u/19684376?v=4" width="90;" alt="houhoz"/>
             <br />
@@ -203,10 +348,18 @@ chmod +x ./script/build.sh && ./script/build.sh
         </a>
     </td>
     <td align="center">
+        <a href="https://github.com/lakca">
+            <img src="https://avatars.githubusercontent.com/u/16255922?v=4" width="90;" alt="lakca"/>
+            <br />
+            <sub><b>Null</b></sub>
+        </a>
+    </td></tr>
+<tr>
+    <td align="center">
         <a href="https://github.com/liusishan">
             <img src="https://avatars.githubusercontent.com/u/33129823?v=4" width="90;" alt="liusishan"/>
             <br />
-            <sub><b>Null</b></sub>
+            <sub><b>Liusishan</b></sub>
         </a>
     </td>
     <td align="center">
@@ -219,13 +372,9 @@ chmod +x ./script/build.sh && ./script/build.sh
 </table>
 <!-- readme: contributors -end -->
 
-## 支持
+## Support
 
-- 我有两只猫，一只叫汤圆，一只叫可乐，假如觉得 Pake 让你生活更美好，可以给汤圆可乐 <a href="https://miaoyan.app/cats.html?name=Pake" target="_blank">喂罐头 🥩🍤</a>。
-- 如果你喜欢 Pake，可以在 Github Star，更欢迎 [推荐](https://twitter.com/intent/tweet?url=https://github.com/tw93/Pake&text=Pake%20%E4%B8%80%E4%B8%AA%E5%BE%88%E7%AE%80%E5%8D%95%E7%9A%84%E7%94%A8%20Rust%20%E6%89%93%E5%8C%85%E7%BD%91%E9%A1%B5%E7%94%9F%E6%88%90%20Mac%20App%20%E7%9A%84%E5%B7%A5%E5%85%B7%EF%BC%8C%E7%9B%B8%E6%AF%94%E4%BC%A0%E7%BB%9F%E7%9A%84%20Electron%20%E5%A5%97%E5%A3%B3%E6%89%93%E5%8C%85%EF%BC%8C%E5%A4%A7%E5%B0%8F%E8%A6%81%E5%B0%8F%E5%B0%86%E8%BF%91%2040%20%E5%80%8D%EF%BC%8C%E4%B8%80%E8%88%AC%202M%20%E5%B7%A6%E5%8F%B3%EF%BC%8C%E5%BA%95%E5%B1%82%E4%BD%BF%E7%94%A8Tauri%20%EF%BC%8C%E6%80%A7%E8%83%BD%E4%BD%93%E9%AA%8C%E8%BE%83%20JS%20%E6%A1%86%E6%9E%B6%E8%A6%81%E8%BD%BB%E5%BF%AB%E4%B8%8D%E5%B0%91%EF%BC%8C%E5%86%85%E5%AD%98%E5%B0%8F%E5%BE%88%E5%A4%9A%EF%BC%8C%E6%94%AF%E6%8C%81%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6%E3%80%81Twitter%E3%80%81Youtube%E3%80%81RunCode%E3%80%81Flomo%E3%80%81%E8%AF%AD%E9%9B%80%E7%AD%89%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%BE%88%E6%96%B9%E4%BE%BF%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91~) 给你志同道合的朋友使用。
-- 可以关注我的 [Twitter](https://twitter.com/HiTw93) 获取到最新的 Pake 更新消息，也欢迎加入 [Telegram](https://t.me/miaoyan) 聊天群。
-
-## 最后
-
-1. 希望大伙玩的过程中有一种学习新技术的喜悦感，如果有新点子欢迎告诉我
-2. 假如你发现有很适合做成桌面 App 的网页也很欢迎告诉我，我给加到里面来
+1. I have two cats, TangYuan and Coke. If you think Pake delights your life, you can feed them <a href="https://miaoyan.app/cats.html?name=Pake" target="_blank">some canned food 🥩</a>.
+2. If you like Pake, you can star it on GitHub. Also, welcome to [recommend Pake](https://twitter.com/intent/tweet?url=https://github.com/tw93/Pake&text=%23Pake%20-%20A%20simple%20Rust%20packaged%20web%20pages%20to%20generate%20Mac%20App%20tool,%20compared%20to%20traditional%20Electron%20package,%20the%20size%20of%20nearly%2040%20times%20smaller,%20generally%20about%202M,%20the%20underlying%20use%20of%20Tauri,%20performance%20experience%20than%20the%20JS%20framework%20is%20much%20lighter~) to your friends.
+3. You can follow my [Twitter](https://twitter.com/HiTw93) to get the latest news of Pake or join our [Telegram](https://t.me/+GclQS9ZnxyI2ODQ1) chat group.
+4. I hope that you enjoy playing with it. Let us know if you find a website that would be great for a Mac App!

@@ -1,219 +1,73 @@
-// at the top of main.rs - that will prevent the console from showing
-#![windows_subsystem = "windows"]
-extern crate image;
-use tauri_utils::config::{Config, WindowConfig};
-#[cfg(target_os = "macos")]
-use wry::application::platform::macos::WindowBuilderExtMacOS;
+#![cfg_attr(
+    all(not(debug_assertions), target_os = "windows"),
+    windows_subsystem = "windows"
+)]
 
-#[cfg(target_os = "macos")]
-use wry::{
-    application::{
-        accelerator::{Accelerator, SysMods},
-        event::{Event, StartCause, WindowEvent},
-        event_loop::{ControlFlow, EventLoop},
-        keyboard::KeyCode,
-        menu::{MenuBar as Menu, MenuItem, MenuItemAttributes, MenuType},
-        window::{Fullscreen, Window, WindowBuilder},
-    },
-    webview::WebViewBuilder,
-};
+mod app;
+mod util;
 
-#[cfg(target_os = "windows")]
-use wry::{
-    application::{
-        event::{Event, StartCause, WindowEvent},
-        event_loop::{ControlFlow, EventLoop},
-        menu::MenuType,
-        window::{Fullscreen, Icon, Window, WindowBuilder},
-    },
-    webview::WebViewBuilder,
-};
+use app::{invoke, menu, window};
+use invoke::{download_file, download_file_by_binary};
+use menu::{get_menu, menu_event_handle};
+use tauri_plugin_window_state::Builder as windowStatePlugin;
+use util::{get_data_dir, get_pake_config};
+use window::get_window;
 
-#[cfg(target_os = "linux")]
-use wry::{
-    application::{
-        event::{Event, StartCause, WindowEvent},
-        event_loop::{ControlFlow, EventLoop},
-        menu::MenuType,
-        window::{Fullscreen, Window, WindowBuilder},
-    },
-    webview::WebViewBuilder,
-};
+pub fn run_app() {
+    let (pake_config, tauri_config) = get_pake_config();
+    let show_menu = pake_config.show_menu();
+    let menu = get_menu();
+    let data_dir = get_data_dir(tauri_config);
 
-fn main() -> wry::Result<()> {
-    #[cfg(target_os = "macos")]
-    let mut menu_bar_menu = Menu::new();
-    #[cfg(target_os = "macos")]
-    let mut first_menu = Menu::new();
-    #[cfg(target_os = "macos")]
-    first_menu.add_native_item(MenuItem::Hide);
-    #[cfg(target_os = "macos")]
-    first_menu.add_native_item(MenuItem::EnterFullScreen);
-    #[cfg(target_os = "macos")]
-    first_menu.add_native_item(MenuItem::Minimize);
-    #[cfg(target_os = "macos")]
-    first_menu.add_native_item(MenuItem::Separator);
-    #[cfg(target_os = "macos")]
-    first_menu.add_native_item(MenuItem::Copy);
-    #[cfg(target_os = "macos")]
-    first_menu.add_native_item(MenuItem::Cut);
-    #[cfg(target_os = "macos")]
-    first_menu.add_native_item(MenuItem::Paste);
-    #[cfg(target_os = "macos")]
-    first_menu.add_native_item(MenuItem::Undo);
-    #[cfg(target_os = "macos")]
-    first_menu.add_native_item(MenuItem::Redo);
-    #[cfg(target_os = "macos")]
-    first_menu.add_native_item(MenuItem::SelectAll);
-    #[cfg(target_os = "macos")]
-    first_menu.add_native_item(MenuItem::Separator);
+    let mut tauri_app = tauri::Builder::default();
 
-    #[cfg(target_os = "macos")]
-    let close_item = first_menu.add_item(
-        MenuItemAttributes::new("CloseWindow")
-            .with_accelerators(&Accelerator::new(SysMods::Cmd, KeyCode::KeyW)),
-    );
-
-    #[cfg(target_os = "macos")]
-    first_menu.add_native_item(MenuItem::Quit);
-
-    #[cfg(target_os = "macos")]
-    menu_bar_menu.add_submenu("App", true, first_menu);
-    #[cfg(target_os = "linux")]
-    let WindowConfig {
-        url,
-        width,
-        height,
-        resizable,
-        fullscreen,
-        ..
-    } = get_windows_config().unwrap_or_default();
-    #[cfg(target_os = "windows")]
-    let WindowConfig {
-        url,
-        width,
-        height,
-        resizable,
-        fullscreen,
-        ..
-    } = get_windows_config().unwrap_or_default();
-    #[cfg(target_os = "macos")]
-    let WindowConfig {
-        url,
-        width,
-        height,
-        resizable,
-        transparent,
-        fullscreen,
-        ..
-    } = get_windows_config().unwrap_or_default();
-    let event_loop = EventLoop::new();
-
-    let common_window = WindowBuilder::new()
-        .with_resizable(resizable)
-        .with_fullscreen(if fullscreen {
-            Some(Fullscreen::Borderless(None))
-        } else {
-            None
-        })
-        .with_inner_size(wry::application::dpi::LogicalSize::new(width, height));
-    #[cfg(target_os = "windows")]
-    let icon_path = concat!(env!("CARGO_MANIFEST_DIR"), "/png/weread_32.ico");
-    #[cfg(target_os = "windows")]
-    let icon = load_icon(std::path::Path::new(icon_path));
-
-    #[cfg(target_os = "windows")]
-    let window = common_window
-        .with_decorations(true)
-        .with_title("")
-        .with_window_icon(Some(icon))
-        .build(&event_loop)
-        .unwrap();
-
-    #[cfg(target_os = "linux")]
-    let window = common_window.with_title("").build(&event_loop).unwrap();
-
-    #[cfg(target_os = "macos")]
-    let window = common_window
-        .with_fullsize_content_view(true)
-        .with_titlebar_buttons_hidden(false)
-        .with_titlebar_transparent(transparent)
-        .with_title_hidden(true)
-        .with_menu(menu_bar_menu)
-        .build(&event_loop)
-        .unwrap();
-
-    let handler = move |window: &Window, req: String| {
-        if req == "drag_window" {
-            let _ = window.drag_window();
-        } else if req == "fullscreen" {
-            if window.fullscreen().is_some() {
-                window.set_fullscreen(None);
-            } else {
-                window.set_fullscreen(Some(Fullscreen::Borderless(None)));
-            }
-        } else if req.starts_with("open_browser") {
-            let href = req.replace("open_browser:", "");
-            webbrowser::open(&href).expect("no browser");
-        }
-    };
-
-    let webview = WebViewBuilder::new(window)?
-        .with_url(&url.to_string())?
-        .with_devtools(cfg!(feature = "devtools"))
-        .with_initialization_script(include_str!("pake.js"))
-        .with_ipc_handler(handler)
-        .with_back_forward_navigation_gestures(true)
-        .build()?;
-
-    #[cfg(feature = "devtools")]
-    {
-        webview.open_devtools();
+    if show_menu {
+        tauri_app = tauri_app.menu(menu).on_menu_event(menu_event_handle);
     }
 
-    event_loop.run(move |event, _, control_flow| {
-        *control_flow = ControlFlow::Wait;
+    #[cfg(not(target_os = "macos"))]
+    {
+        use menu::{get_system_tray, system_tray_handle};
 
-        match event {
-            Event::NewEvents(StartCause::Init) => println!("Wry has started!"),
-            Event::WindowEvent {
-                event: WindowEvent::CloseRequested,
-                ..
-            } => *control_flow = ControlFlow::Exit,
-            Event::MenuEvent {
-                menu_id,
-                origin: MenuType::MenuBar,
-                ..
-            } => {
-                #[cfg(target_os = "macos")]
-                if menu_id == close_item.clone().id() {
-                    webview.window().set_minimized(true);
-                }
-                println!("Clicked on {:?}", menu_id);
-                println!("Clicked on {:?}", webview.window().is_visible());
-            }
-            _ => (),
+        let show_system_tray = pake_config.show_system_tray();
+        let system_tray = get_system_tray(show_menu);
+
+        if show_system_tray {
+            tauri_app = tauri_app
+                .system_tray(system_tray)
+                .on_system_tray_event(system_tray_handle);
         }
-    });
+    }
+
+    tauri_app
+        .plugin(windowStatePlugin::default().build())
+        .invoke_handler(tauri::generate_handler![
+            download_file,
+            download_file_by_binary
+        ])
+        .setup(|app| {
+            let _window = get_window(app, pake_config, data_dir);
+            // Prevent initial shaking
+            _window.show().unwrap();
+            Ok(())
+        })
+        .on_window_event(|event| {
+            if let tauri::WindowEvent::CloseRequested { api, .. } = event.event() {
+                #[cfg(target_os = "macos")]
+                {
+                    event.window().minimize().unwrap();
+                }
+
+                #[cfg(not(target_os = "macos"))]
+                event.window().close().unwrap();
+
+                api.prevent_close();
+            }
+        })
+        .run(tauri::generate_context!())
+        .expect("error while running tauri application");
 }
 
-fn get_windows_config() -> Option<WindowConfig> {
-    let config_file = include_str!("../tauri.conf.json");
-    let config: Config = serde_json::from_str(config_file).expect("failed to parse windows config");
-
-    config.tauri.windows.first().cloned()
-}
-
-#[cfg(target_os = "windows")]
-fn load_icon(path: &std::path::Path) -> Icon {
-    let (icon_rgba, icon_width, icon_height) = {
-        // alternatively, you can embed the icon in the binary through `include_bytes!` macro and use `image::load_from_memory`
-        let image = image::open(path)
-            .expect("Failed to open icon path")
-            .into_rgba8();
-        let (width, height) = image.dimensions();
-        let rgba = image.into_raw();
-        (rgba, width, height)
-    };
-    Icon::from_rgba(icon_rgba, icon_width, icon_height).expect("Failed to open icon")
+fn main() {
+    run_app()
 }

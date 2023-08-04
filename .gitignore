@@ -12,8 +12,7 @@ dist-ssr
 *.local
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
+.vscode
 .idea
 .DS_Store
 *.suo
@@ -23,7 +22,19 @@ dist-ssr
 *.sw?
 .npmrc
 output
+*.msi
+*.deb
+*.AppImage
+*.dmg
 
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
+dist
+!dist/about_pake.html
+!dist/cli.js
+!dist/.gitkeep
+src-tauri/.cargo/config
+src-tauri/.cargo/
+.next
+src-tauri/.pake/
